@@ -2,6 +2,8 @@ package com.training.basic.demo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class Student {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer studId;
 	
 	@Column(name = "name")
@@ -23,9 +26,29 @@ public class Student {
 	
 	@Column(name = "subject")
 	private String subject;
+	
+	private String mobile;
 
 	public Student() {
 		super();
+	}
+
+	public Student(String name, String address, float marks, String subject, String mobile) {
+		super();
+		
+		this.name = name;
+		this.address = address;
+		this.marks = marks;
+		this.subject = subject;
+		this.mobile = mobile;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public Integer getStudId() {

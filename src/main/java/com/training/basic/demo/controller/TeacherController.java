@@ -1,7 +1,5 @@
 package com.training.basic.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,46 +10,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.training.basic.demo.model.StudentRequest;
-import com.training.basic.demo.model.StudentResponse;
-import com.training.basic.demo.service.StudentService;
+import com.training.basic.demo.model.TeacherRequest;
+import com.training.basic.demo.service.TeacherService;
 
 @RestController
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/teacher")
+public class TeacherController {
 
 	@Autowired
-	private StudentService service;
-
-	@GetMapping(value="/name/{id}")
-	public String fetchStudentName(@PathVariable(name="id") int id) {
-		return service.fetchStudentName(id);
+	private TeacherService service;
+	
+	@GetMapping(value = "/name/{id}")
+	public String getTeacherName(@PathVariable(name = "id") int id) {
+		return service.getTeacher(id);
+		
 	}
 	
 	@PostMapping(value ="/add", produces = {"application/json"}, consumes = {"application/json"})
-	public String addStudent(@RequestBody StudentRequest student) {
-		return service.addStudent(student);
+	public String addTeacher(@RequestBody TeacherRequest teacher) {
+		return service.addTeacher(teacher);
 	}
 	
 	@DeleteMapping(value="/delete/{id}")
 	public String deleteStudent(@PathVariable(name="id") int id) {
-		return service.deleteStudent(id);
+		return service.deleteTeacher(id);
 		
 	}
 	
 	@PutMapping(value ="/update", produces = {"application/json"}, consumes = {"application/json"})
-	public String updateStudent(@RequestBody StudentRequest student) {
-		return service.updateStudent(student);
+	public String updateTeacher(@RequestBody TeacherRequest teacher) {
+		return service.updateTeacher(teacher);
 	}
 	
-	@GetMapping(value="/{id}")
-	public StudentResponse fetchStudent(@PathVariable(name="id") int id) {
-		return service.fetchStudent(id);
-	}
-	
-	@GetMapping(value="/")
-	public List<StudentResponse> fetchAllStudents() {
-		return service.fetchAllStudents();
-	}
 	
 }
